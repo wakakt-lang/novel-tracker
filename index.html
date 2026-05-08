@@ -7,90 +7,50 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #ffffff;
-    --bg2: #f5f5f3;
-    --bg3: #eeede8;
-    --text: #1a1a1a;
-    --text2: #6b6b67;
-    --border: rgba(0,0,0,0.12);
-    --border2: rgba(0,0,0,0.22);
-    --success-bg: #e1f5ee;
-    --success-text: #0f6e56;
-    --warn-bg: #faeeda;
-    --warn-text: #854f0b;
-    --danger-bg: #fcebeb;
-    --danger-text: #a32d2d;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --bg: #ffffff; --bg2: #f5f5f3; --bg3: #eeede8;
+    --text: #1a1a1a; --text2: #6b6b67;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
+    --success-bg: #e1f5ee; --success-text: #0f6e56;
+    --warn-bg: #faeeda; --warn-text: #854f0b;
+    --danger-bg: #fcebeb; --danger-text: #a32d2d;
+    --radius-md: 8px; --radius-lg: 12px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1e1e1c;
-      --bg2: #2a2a28;
-      --bg3: #333330;
-      --text: #f0ede8;
-      --text2: #999990;
-      --border: rgba(255,255,255,0.12);
-      --border2: rgba(255,255,255,0.22);
-      --success-bg: #04342c;
-      --success-text: #9fe1cb;
-      --warn-bg: #412402;
-      --warn-text: #fac775;
-      --danger-bg: #4a1b0c;
-      --danger-text: #f7c1c1;
+      --bg: #1e1e1c; --bg2: #2a2a28; --bg3: #333330;
+      --text: #f0ede8; --text2: #999990;
+      --border: rgba(255,255,255,0.12); --border2: rgba(255,255,255,0.22);
+      --success-bg: #04342c; --success-text: #9fe1cb;
+      --warn-bg: #412402; --warn-text: #fac775;
+      --danger-bg: #4a1b0c; --danger-text: #f7c1c1;
     }
   }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg3);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 2rem;
-  }
-
-  .topbar {
-    background: var(--bg);
-    border-bottom: 0.5px solid var(--border);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; padding-bottom: 2rem; }
+  .topbar { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
   .topbar h1 { font-size: 17px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-
+  .sync-status { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
   .main { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
-
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
   .stat-card { background: var(--bg2); border-radius: var(--radius-md); padding: 12px; text-align: center; }
   .stat-num { font-size: 22px; font-weight: 500; }
   .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
   .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
   .tab { padding: 7px 16px; border-radius: var(--radius-md); border: 0.5px solid var(--border2); background: none; cursor: pointer; font-size: 14px; color: var(--text2); }
   .tab.active { background: var(--bg2); color: var(--text); font-weight: 500; }
-
   .work-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
   .work-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
   .work-title { font-size: 16px; font-weight: 500; }
   .work-sub { font-size: 13px; color: var(--text2); margin-top: 2px; }
   .work-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-
   .badge { font-size: 12px; padding: 3px 10px; border-radius: var(--radius-md); white-space: nowrap; }
   .badge-ok { background: var(--success-bg); color: var(--success-text); }
   .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
   .badge-over { background: var(--danger-bg); color: var(--danger-text); }
   .badge-none { background: var(--bg2); color: var(--text2); }
-
   .prog-wrap { background: var(--bg3); border-radius: 999px; height: 6px; margin: 8px 0 6px; }
   .prog-bar { height: 6px; border-radius: 999px; background: #1D9E75; transition: width 0.3s; }
   .prog-label { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
-
   .chapters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 7px; margin-top: 12px; }
   .chap { background: var(--bg2); border-radius: var(--radius-md); padding: 8px 10px; display: flex; align-items: center; gap: 7px; cursor: pointer; border: 0.5px solid transparent; user-select: none; }
   .chap:active { opacity: 0.7; }
@@ -99,45 +59,43 @@
   .chap-dot.done { background: #1D9E75; border-color: #1D9E75; }
   .chap-name { font-size: 13px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .chap.done .chap-name { color: var(--success-text); }
-
   .add-chap-btn { margin-top: 10px; border: 0.5px dashed var(--border2); background: none; border-radius: var(--radius-md); padding: 8px 14px; font-size: 13px; color: var(--text2); cursor: pointer; display: flex; align-items: center; gap: 6px; }
   .add-chap-btn:hover { background: var(--bg2); }
-
   .form-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
   .form-group { margin-bottom: 12px; }
   .form-group label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 5px; }
-  .form-group input, .form-group select {
-    width: 100%; padding: 9px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-md);
-    background: var(--bg2); color: var(--text); font-size: 15px;
-  }
+  .form-group input { width: 100%; padding: 9px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); font-size: 15px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   @media (max-width: 420px) { .form-row { grid-template-columns: 1fr; } }
-
   .btn { border: 0.5px solid var(--border2); background: none; border-radius: var(--radius-md); padding: 9px 16px; font-size: 14px; cursor: pointer; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
   .btn:hover { background: var(--bg2); }
   .btn.primary { background: var(--bg2); }
   .btn-danger { border: none; background: none; cursor: pointer; color: var(--text2); padding: 4px 8px; border-radius: var(--radius-md); font-size: 14px; }
   .btn-danger:hover { background: var(--danger-bg); color: var(--danger-text); }
-
   .btn-row { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
-
   .empty { text-align: center; color: var(--text2); padding: 3rem 1rem; font-size: 14px; line-height: 2; }
   .empty i { font-size: 36px; display: block; margin-bottom: 8px; }
-
   .deadline-edit { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
   .deadline-edit input { padding: 5px 8px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); }
-  .deadline-edit button { font-size: 13px; padding: 5px 10px; }
+  .loading { text-align: center; color: var(--text2); padding: 3rem; font-size: 14px; }
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <h1><i class="ti ti-book-2" aria-hidden="true"></i> 執筆進捗管理</h1>
-  <button class="btn" onclick="showTab('add')"><i class="ti ti-plus" aria-hidden="true"></i> 追加</button>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="sync-status" id="sync-status"><i class="ti ti-cloud" aria-hidden="true"></i> 接続中...</span>
+    <button class="btn" onclick="showTab('add')"><i class="ti ti-plus" aria-hidden="true"></i> 追加</button>
+  </div>
 </div>
 
 <div class="main">
-  <div class="stat-row" id="stats-row"></div>
+  <div class="stat-row" id="stats-row">
+    <div class="stat-card"><div class="stat-num">-</div><div class="stat-label">作品数</div></div>
+    <div class="stat-card"><div class="stat-num">-</div><div class="stat-label">完了話数</div></div>
+    <div class="stat-card"><div class="stat-num">-</div><div class="stat-label">全体進捗</div></div>
+  </div>
 
   <div class="tabs">
     <button class="tab active" id="tab-works" onclick="showTab('works')">作品一覧</button>
@@ -145,7 +103,7 @@
   </div>
 
   <div id="view-works">
-    <div id="works-list"></div>
+    <div class="loading"><i class="ti ti-loader" aria-hidden="true"></i> 読み込み中...</div>
   </div>
 
   <div id="view-add" style="display:none;">
@@ -182,18 +140,59 @@
   </div>
 </div>
 
-<script>
-const KEY = 'novel-tracker-v1';
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC2OmvQqKMrfaRgBNdSGelk0FxaLfP46Mc",
+  authDomain: "novel-tracker-c4adb.firebaseapp.com",
+  projectId: "novel-tracker-c4adb",
+  storageBucket: "novel-tracker-c4adb.firebasestorage.app",
+  messagingSenderId: "417122615051",
+  appId: "1:417122615051:web:babcbc3fa46782adfd6c0e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const DOC_REF = doc(db, "tracker", "main");
+
 let state = { works: [] };
+let saving = false;
 
-try {
-  const raw = localStorage.getItem(KEY);
-  if (raw) state = JSON.parse(raw);
-} catch(e) {}
-
-function save() {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+function setSyncStatus(s) {
+  const el = document.getElementById('sync-status');
+  if (s === 'ok') el.innerHTML = '<i class="ti ti-cloud-check"></i> 同期済み';
+  else if (s === 'saving') el.innerHTML = '<i class="ti ti-cloud-upload"></i> 保存中...';
+  else if (s === 'error') el.innerHTML = '<i class="ti ti-cloud-off"></i> エラー';
+  else el.innerHTML = '<i class="ti ti-cloud"></i> 接続中...';
 }
+
+async function saveToFirebase() {
+  if (saving) return;
+  saving = true;
+  setSyncStatus('saving');
+  try {
+    await setDoc(DOC_REF, JSON.parse(JSON.stringify(state)));
+    setSyncStatus('ok');
+  } catch(e) {
+    setSyncStatus('error');
+    console.error(e);
+  }
+  saving = false;
+}
+
+onSnapshot(DOC_REF, (snap) => {
+  if (snap.exists()) {
+    state = snap.data();
+    if (!state.works) state.works = [];
+  }
+  setSyncStatus('ok');
+  render();
+}, (err) => {
+  setSyncStatus('error');
+  console.error(err);
+});
 
 function deadlineInfo(dl) {
   if (!dl) return { label: '〆切未設定', cls: 'badge-none' };
@@ -205,12 +204,11 @@ function deadlineInfo(dl) {
   return { label: `${diff} 日後`, cls: 'badge-ok' };
 }
 
-function showTab(tab) {
+window.showTab = function(tab) {
   document.getElementById('view-works').style.display = tab === 'works' ? '' : 'none';
   document.getElementById('view-add').style.display = tab === 'add' ? '' : 'none';
   document.getElementById('tab-works').classList.toggle('active', tab === 'works');
   document.getElementById('tab-add').classList.toggle('active', tab === 'add');
-  if (tab === 'works') render();
 }
 
 function render() {
@@ -223,7 +221,7 @@ function render() {
     <div class="stat-card"><div class="stat-num">${totalChaps > 0 ? Math.round(totalDone/totalChaps*100) : 0}%</div><div class="stat-label">全体進捗</div></div>
   `;
 
-  const listEl = document.getElementById('works-list');
+  const listEl = document.getElementById('view-works');
   if (!works.length) {
     listEl.innerHTML = '<div class="empty"><i class="ti ti-books" aria-hidden="true"></i>作品がまだありません<br>「新規作品」から追加してください</div>';
     return;
@@ -267,7 +265,7 @@ function render() {
   }).join('');
 }
 
-function addWork() {
+window.addWork = async function() {
   const title = document.getElementById('new-title').value.trim();
   if (!title) { alert('タイトルを入力してください'); return; }
   const total = parseInt(document.getElementById('new-total').value) || 1;
@@ -276,7 +274,7 @@ function addWork() {
   const unit = document.getElementById('new-unit').value.trim() || '話';
   const chapters = Array.from({length: total}, (_,i) => ({ name: `第${i+1}${unit}`, done: false }));
   state.works.push({ title, label, deadline, unit, chapters });
-  save();
+  await saveToFirebase();
   document.getElementById('new-title').value = '';
   document.getElementById('new-label').value = '';
   document.getElementById('new-deadline').value = '';
@@ -285,32 +283,30 @@ function addWork() {
   showTab('works');
 }
 
-function toggleChap(wi, ci) {
+window.toggleChap = async function(wi, ci) {
   state.works[wi].chapters[ci].done = !state.works[wi].chapters[ci].done;
-  save(); render();
+  await saveToFirebase();
 }
 
-function addChap(wi) {
+window.addChap = async function(wi) {
   const w = state.works[wi];
   const num = w.chapters.length + 1;
   const name = prompt(`追加する${w.unit||'話'}の名前`, `第${num}${w.unit||'話'}`);
   if (!name) return;
   w.chapters.push({ name, done: false });
-  save(); render();
+  await saveToFirebase();
 }
 
-function deleteWork(wi) {
+window.deleteWork = async function(wi) {
   if (!confirm(`「${state.works[wi].title}」を削除しますか？`)) return;
   state.works.splice(wi, 1);
-  save(); render();
+  await saveToFirebase();
 }
 
-function updateDeadline(wi, val) {
+window.updateDeadline = async function(wi, val) {
   state.works[wi].deadline = val;
-  save(); render();
+  await saveToFirebase();
 }
-
-render();
 </script>
 </body>
 </html>
