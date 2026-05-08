@@ -14,6 +14,7 @@
     --success-bg: #e1f5ee; --success-text: #0f6e56;
     --warn-bg: #faeeda; --warn-text: #854f0b;
     --danger-bg: #fcebeb; --danger-text: #a32d2d;
+    --info-bg: #e6f1fb; --info-text: #185fa5;
     --radius-md: 8px; --radius-lg: 12px;
   }
   @media (prefers-color-scheme: dark) {
@@ -24,60 +25,97 @@
       --success-bg: #04342c; --success-text: #9fe1cb;
       --warn-bg: #412402; --warn-text: #fac775;
       --danger-bg: #4a1b0c; --danger-text: #f7c1c1;
+      --info-bg: #042c53; --info-text: #b5d4f4;
     }
   }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; padding-bottom: 2rem; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; padding-bottom: 3rem; }
+
   .topbar { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
   .topbar h1 { font-size: 17px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
   .sync-status { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
-  .main { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+
+  .main { max-width: 720px; margin: 0 auto; padding: 20px 16px; }
+
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
   .stat-card { background: var(--bg2); border-radius: var(--radius-md); padding: 12px; text-align: center; }
   .stat-num { font-size: 22px; font-weight: 500; }
   .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
   .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
   .tab { padding: 7px 16px; border-radius: var(--radius-md); border: 0.5px solid var(--border2); background: none; cursor: pointer; font-size: 14px; color: var(--text2); }
   .tab.active { background: var(--bg2); color: var(--text); font-weight: 500; }
+
   .work-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
-  .work-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+  .work-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
   .work-title { font-size: 16px; font-weight: 500; }
   .work-sub { font-size: 13px; color: var(--text2); margin-top: 2px; }
   .work-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
   .badge { font-size: 12px; padding: 3px 10px; border-radius: var(--radius-md); white-space: nowrap; }
   .badge-ok { background: var(--success-bg); color: var(--success-text); }
   .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
   .badge-over { background: var(--danger-bg); color: var(--danger-text); }
   .badge-none { background: var(--bg2); color: var(--text2); }
+
   .prog-wrap { background: var(--bg3); border-radius: 999px; height: 6px; margin: 8px 0 6px; }
   .prog-bar { height: 6px; border-radius: 999px; background: #1D9E75; transition: width 0.3s; }
-  .prog-label { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
-  .chapters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 7px; margin-top: 12px; }
-  .chap { background: var(--bg2); border-radius: var(--radius-md); padding: 8px 10px; display: flex; align-items: center; gap: 7px; cursor: pointer; border: 0.5px solid transparent; user-select: none; }
-  .chap:active { opacity: 0.7; }
-  .chap.done { background: var(--success-bg); }
-  .chap-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-  .chap-dot.done { background: #1D9E75; border-color: #1D9E75; }
-  .chap-name { font-size: 13px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .chap.done .chap-name { color: var(--success-text); }
+  .prog-label { font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; margin-bottom: 12px; }
+
+  .deadline-edit { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .deadline-edit input { padding: 5px 8px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); }
+
+  /* 工程バッジ */
+  .stage-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+  .stage-pill { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 0.5px solid var(--border2); color: var(--text2); background: none; cursor: default; }
+  .stage-pill.s0 { background: var(--bg2); color: var(--text2); }
+  .stage-pill.s1 { background: #faeeda; color: #854f0b; }
+  .stage-pill.s2 { background: #e6f1fb; color: #185fa5; }
+  .stage-pill.s3 { background: #eaf3de; color: #3b6d11; }
+  .stage-pill.s4 { background: #eeedfe; color: #534ab7; }
+  .stage-pill.s5 { background: #e1f5ee; color: #0f6e56; }
+
+  /* 話リスト */
+  .chap-list { display: flex; flex-direction: column; gap: 6px; }
+  .chap-row { background: var(--bg2); border-radius: var(--radius-md); padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+  .chap-name-text { font-size: 14px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chap-stage-select { font-size: 13px; padding: 4px 8px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg); color: var(--text); cursor: pointer; flex-shrink: 0; }
+  .chap-done-btn { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; background: none; }
+  .chap-done-btn.done { background: #1D9E75; border-color: #1D9E75; }
+  .chap-del-btn { background: none; border: none; cursor: pointer; color: var(--text2); font-size: 14px; padding: 2px 4px; border-radius: 4px; flex-shrink: 0; }
+  .chap-del-btn:hover { color: var(--danger-text); background: var(--danger-bg); }
+
   .add-chap-btn { margin-top: 10px; border: 0.5px dashed var(--border2); background: none; border-radius: var(--radius-md); padding: 8px 14px; font-size: 13px; color: var(--text2); cursor: pointer; display: flex; align-items: center; gap: 6px; }
   .add-chap-btn:hover { background: var(--bg2); }
+
+  /* フォーム */
   .form-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
   .form-group { margin-bottom: 12px; }
   .form-group label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 5px; }
-  .form-group input { width: 100%; padding: 9px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); font-size: 15px; }
+  .form-group input, .form-group textarea { width: 100%; padding: 9px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); font-size: 15px; font-family: inherit; }
+  .form-group textarea { resize: vertical; min-height: 60px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   @media (max-width: 420px) { .form-row { grid-template-columns: 1fr; } }
+
+  .stages-editor { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .stage-editor-row { display: flex; align-items: center; gap: 8px; }
+  .stage-editor-row input { flex: 1; padding: 7px 10px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); font-size: 14px; }
+  .stage-drag-handle { color: var(--text2); cursor: grab; font-size: 14px; }
+  .stage-remove-btn { background: none; border: none; cursor: pointer; color: var(--text2); font-size: 14px; }
+  .stage-remove-btn:hover { color: var(--danger-text); }
+  .add-stage-btn { border: 0.5px dashed var(--border2); background: none; border-radius: var(--radius-md); padding: 6px 12px; font-size: 13px; color: var(--text2); cursor: pointer; display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+  .add-stage-btn:hover { background: var(--bg2); }
+
   .btn { border: 0.5px solid var(--border2); background: none; border-radius: var(--radius-md); padding: 9px 16px; font-size: 14px; cursor: pointer; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
   .btn:hover { background: var(--bg2); }
   .btn.primary { background: var(--bg2); }
   .btn-danger { border: none; background: none; cursor: pointer; color: var(--text2); padding: 4px 8px; border-radius: var(--radius-md); font-size: 14px; }
   .btn-danger:hover { background: var(--danger-bg); color: var(--danger-text); }
   .btn-row { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+
   .empty { text-align: center; color: var(--text2); padding: 3rem 1rem; font-size: 14px; line-height: 2; }
   .empty i { font-size: 36px; display: block; margin-bottom: 8px; }
-  .deadline-edit { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-  .deadline-edit input { padding: 5px 8px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius-md); background: var(--bg2); color: var(--text); }
-  .loading { text-align: center; color: var(--text2); padding: 3rem; font-size: 14px; }
+
+  .section-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; letter-spacing: 0.03em; }
 </style>
 </head>
 <body>
@@ -103,7 +141,7 @@
   </div>
 
   <div id="view-works">
-    <div class="loading"><i class="ti ti-loader" aria-hidden="true"></i> 読み込み中...</div>
+    <div class="empty"><i class="ti ti-loader" aria-hidden="true"></i>読み込み中...</div>
   </div>
 
   <div id="view-add" style="display:none;">
@@ -119,7 +157,7 @@
         </div>
         <div class="form-group">
           <label>単位</label>
-          <input type="text" id="new-unit" placeholder="話" value="話">
+          <input type="text" id="new-unit" value="話">
         </div>
       </div>
       <div class="form-row">
@@ -132,6 +170,13 @@
           <input type="date" id="new-deadline">
         </div>
       </div>
+
+      <div class="form-group">
+        <label>工程（順番に並べてください）</label>
+        <div class="stages-editor" id="stages-editor"></div>
+        <button class="add-stage-btn" onclick="addStageField()"><i class="ti ti-plus" aria-hidden="true"></i> 工程を追加</button>
+      </div>
+
       <div class="btn-row">
         <button class="btn primary" onclick="addWork()"><i class="ti ti-check" aria-hidden="true"></i> 登録</button>
         <button class="btn" onclick="showTab('works')">キャンセル</button>
@@ -145,7 +190,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC2OmvQqKMrfaRgBNdSGelk0FxaLfP46Mc",
+  apiKey: "AIzaSyApnfpGaweS8fHwQO3Dz2u7A_tD1eTZgo0",
   authDomain: "novel-tracker-c4adb.firebaseapp.com",
   projectId: "novel-tracker-c4adb",
   storageBucket: "novel-tracker-c4adb.firebasestorage.app",
@@ -156,6 +201,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const DOC_REF = doc(db, "tracker", "main");
+
+const DEFAULT_STAGES = ["初稿", "改稿", "校正", "再校", "校了"];
+const STAGE_CLASSES = ["s0","s1","s2","s3","s4","s5"];
 
 let state = { works: [] };
 let saving = false;
@@ -168,51 +216,45 @@ function setSyncStatus(s) {
   else el.innerHTML = '<i class="ti ti-cloud"></i> 接続中...';
 }
 
-async function saveToFirebase() {
+async function save() {
   if (saving) return;
   saving = true;
   setSyncStatus('saving');
   try {
     await setDoc(DOC_REF, JSON.parse(JSON.stringify(state)));
     setSyncStatus('ok');
-  } catch(e) {
-    setSyncStatus('error');
-    console.error(e);
-  }
+  } catch(e) { setSyncStatus('error'); console.error(e); }
   saving = false;
 }
 
 onSnapshot(DOC_REF, (snap) => {
-  if (snap.exists()) {
-    state = snap.data();
-    if (!state.works) state.works = [];
-  }
+  if (snap.exists()) { state = snap.data(); if (!state.works) state.works = []; }
   setSyncStatus('ok');
   render();
-}, (err) => {
-  setSyncStatus('error');
-  console.error(err);
-});
+}, (err) => { setSyncStatus('error'); console.error(err); });
 
 function deadlineInfo(dl) {
   if (!dl) return { label: '〆切未設定', cls: 'badge-none' };
   const now = new Date(); now.setHours(0,0,0,0);
-  const d = new Date(dl);
-  const diff = Math.round((d - now) / 86400000);
+  const diff = Math.round((new Date(dl) - now) / 86400000);
   if (diff < 0) return { label: '〆切超過', cls: 'badge-over' };
   if (diff <= 7) return { label: `あと ${diff} 日`, cls: 'badge-warn' };
   return { label: `${diff} 日後`, cls: 'badge-ok' };
 }
+
+function stageClass(idx) { return STAGE_CLASSES[Math.min(idx, STAGE_CLASSES.length-1)]; }
 
 window.showTab = function(tab) {
   document.getElementById('view-works').style.display = tab === 'works' ? '' : 'none';
   document.getElementById('view-add').style.display = tab === 'add' ? '' : 'none';
   document.getElementById('tab-works').classList.toggle('active', tab === 'works');
   document.getElementById('tab-add').classList.toggle('active', tab === 'add');
+  if (tab === 'add') initStagesEditor();
 }
 
 function render() {
   const works = state.works;
+  // 「校了」またはstage===stages.length-1 を完了とみなす
   const totalDone = works.reduce((s,w) => s + w.chapters.filter(c=>c.done).length, 0);
   const totalChaps = works.reduce((s,w) => s + w.chapters.length, 0);
   document.getElementById('stats-row').innerHTML = `
@@ -228,18 +270,40 @@ function render() {
   }
 
   listEl.innerHTML = works.map((w, wi) => {
+    const stages = w.stages && w.stages.length ? w.stages : DEFAULT_STAGES;
     const done = w.chapters.filter(c=>c.done).length;
     const total = w.chapters.length;
     const pct = total > 0 ? Math.round(done/total*100) : 0;
     const dl = deadlineInfo(w.deadline);
     const unit = w.unit || '話';
-    const chaps = w.chapters.map((c,ci) => `
-      <div class="chap ${c.done?'done':''}" onclick="toggleChap(${wi},${ci})">
-        <div class="chap-dot ${c.done?'done':''}">
-          ${c.done ? '<i class="ti ti-check" style="font-size:10px;color:#fff" aria-hidden="true"></i>' : ''}
-        </div>
-        <span class="chap-name">${c.name}</span>
-      </div>`).join('');
+
+    // 工程別の集計バッジ
+    const stageCounts = stages.map((s,si) => ({
+      name: s,
+      count: w.chapters.filter(c => !c.done && c.stage === si).length,
+      cls: stageClass(si)
+    }));
+    const donePillCount = w.chapters.filter(c=>c.done).length;
+
+    const stagePills = stageCounts.map(sc =>
+      sc.count > 0 ? `<span class="stage-pill ${sc.cls}">${sc.name} ${sc.count}</span>` : ''
+    ).join('') + (donePillCount > 0 ? `<span class="stage-pill s5">完了 ${donePillCount}</span>` : '');
+
+    const chapRows = w.chapters.map((c,ci) => {
+      const currentStage = c.done ? -1 : (c.stage ?? 0);
+      const stageOptions = stages.map((s,si) =>
+        `<option value="${si}" ${!c.done && (c.stage??0)===si?'selected':''}>${s}</option>`
+      ).join('');
+      return `
+      <div class="chap-row">
+        <button class="chap-done-btn ${c.done?'done':''}" onclick="toggleDone(${wi},${ci})" title="${c.done?'完了済み（クリックで戻す）':'完了にする'}">
+          ${c.done?'<i class="ti ti-check" style="font-size:11px;color:#fff" aria-hidden="true"></i>':''}
+        </button>
+        <span class="chap-name-text" style="${c.done?'text-decoration:line-through;color:var(--text2)':''}">${c.name}</span>
+        ${!c.done ? `<select class="chap-stage-select" onchange="setStage(${wi},${ci},this.value)">${stageOptions}</select>` : '<span style="font-size:12px;color:var(--success-text)">校了</span>'}
+        <button class="chap-del-btn" onclick="deleteChap(${wi},${ci})" title="削除"><i class="ti ti-x" aria-hidden="true"></i></button>
+      </div>`;
+    }).join('');
 
     return `
     <div class="work-card">
@@ -255,15 +319,35 @@ function render() {
       </div>
       <div class="deadline-edit">
         <i class="ti ti-calendar" style="font-size:14px;color:var(--text2)" aria-hidden="true"></i>
-        <input type="date" value="${w.deadline||''}" onchange="updateDeadline(${wi}, this.value)" title="〆切を変更">
+        <input type="date" value="${w.deadline||''}" onchange="updateDeadline(${wi},this.value)">
       </div>
       <div class="prog-wrap"><div class="prog-bar" style="width:${pct}%"></div></div>
       <div class="prog-label"><span>${done} / ${total} ${unit}完了</span><span>${pct}%</span></div>
-      <div class="chapters-grid">${chaps}</div>
+      <div class="stage-pills">${stagePills}</div>
+      <div class="chap-list">${chapRows}</div>
       <button class="add-chap-btn" onclick="addChap(${wi})"><i class="ti ti-plus" aria-hidden="true"></i> ${unit}を追加</button>
     </div>`;
   }).join('');
 }
+
+// 工程エディタ
+let tempStages = [...DEFAULT_STAGES];
+function initStagesEditor() {
+  tempStages = [...DEFAULT_STAGES];
+  renderStagesEditor();
+}
+function renderStagesEditor() {
+  const el = document.getElementById('stages-editor');
+  el.innerHTML = tempStages.map((s,i) => `
+    <div class="stage-editor-row">
+      <i class="ti ti-grip-vertical stage-drag-handle" aria-hidden="true"></i>
+      <input type="text" value="${s}" onchange="updateStage(${i},this.value)" placeholder="工程名">
+      <button class="stage-remove-btn" onclick="removeStage(${i})" title="削除"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </div>`).join('');
+}
+window.addStageField = function() { tempStages.push(''); renderStagesEditor(); }
+window.updateStage = function(i,v) { tempStages[i]=v; }
+window.removeStage = function(i) { tempStages.splice(i,1); renderStagesEditor(); }
 
 window.addWork = async function() {
   const title = document.getElementById('new-title').value.trim();
@@ -272,9 +356,10 @@ window.addWork = async function() {
   const deadline = document.getElementById('new-deadline').value;
   const label = document.getElementById('new-label').value.trim();
   const unit = document.getElementById('new-unit').value.trim() || '話';
-  const chapters = Array.from({length: total}, (_,i) => ({ name: `第${i+1}${unit}`, done: false }));
-  state.works.push({ title, label, deadline, unit, chapters });
-  await saveToFirebase();
+  const stages = tempStages.filter(s=>s.trim()).length ? tempStages.filter(s=>s.trim()) : [...DEFAULT_STAGES];
+  const chapters = Array.from({length: total}, (_,i) => ({ name: `第${i+1}${unit}`, done: false, stage: 0 }));
+  state.works.push({ title, label, deadline, unit, stages, chapters });
+  await save();
   document.getElementById('new-title').value = '';
   document.getElementById('new-label').value = '';
   document.getElementById('new-deadline').value = '';
@@ -283,30 +368,44 @@ window.addWork = async function() {
   showTab('works');
 }
 
-window.toggleChap = async function(wi, ci) {
-  state.works[wi].chapters[ci].done = !state.works[wi].chapters[ci].done;
-  await saveToFirebase();
+window.toggleDone = async function(wi, ci) {
+  const c = state.works[wi].chapters[ci];
+  c.done = !c.done;
+  if (!c.done) c.stage = 0;
+  await save();
+}
+
+window.setStage = async function(wi, ci, val) {
+  state.works[wi].chapters[ci].stage = parseInt(val);
+  await save();
 }
 
 window.addChap = async function(wi) {
   const w = state.works[wi];
-  const num = w.chapters.length + 1;
-  const name = prompt(`追加する${w.unit||'話'}の名前`, `第${num}${w.unit||'話'}`);
+  const name = prompt(`追加する${w.unit||'話'}の名前`, `第${w.chapters.length+1}${w.unit||'話'}`);
   if (!name) return;
-  w.chapters.push({ name, done: false });
-  await saveToFirebase();
+  w.chapters.push({ name, done: false, stage: 0 });
+  await save();
+}
+
+window.deleteChap = async function(wi, ci) {
+  if (!confirm(`「${state.works[wi].chapters[ci].name}」を削除しますか？`)) return;
+  state.works[wi].chapters.splice(ci, 1);
+  await save();
 }
 
 window.deleteWork = async function(wi) {
   if (!confirm(`「${state.works[wi].title}」を削除しますか？`)) return;
   state.works.splice(wi, 1);
-  await saveToFirebase();
+  await save();
 }
 
 window.updateDeadline = async function(wi, val) {
   state.works[wi].deadline = val;
-  await saveToFirebase();
+  await save();
 }
+
+initStagesEditor();
 </script>
 </body>
 </html>
